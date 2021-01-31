@@ -121,7 +121,11 @@ class ContactController extends Controller
                     'email'=>$email['email']
                 ]);
             }else{
+<<<<<<< HEAD
                 Email::find($email['id]'])->update([
+=======
+                Email::find($email['id'])->update([
+>>>>>>> 1156d0a74b9c18edd8d24a98f77cda51441d8219
                     'email'=>$email['email']
                 ]);
             }
