@@ -28,13 +28,9 @@ class DeletedContactsController extends Controller
     public function store(BulkDeleteRequest $request)
     {
         $contact_ids=$request->validated();
-<<<<<<< HEAD
             foreach($contact_ids as $id){
                 Contact::destroy($id);
             }
-=======
-            Contact::whereIn('id',$contact_ids)->delete();
->>>>>>> 1156d0a74b9c18edd8d24a98f77cda51441d8219
 
         return response()->json(null,204);
     }
