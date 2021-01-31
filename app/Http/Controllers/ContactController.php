@@ -115,21 +115,29 @@ class ContactController extends Controller
         }
 
         foreach($data['emails'] as $email){
-            Email::updateOrCreate([
-                'id'=>$email['id'],
-                'contact_id'=>$contact->id
-            ],[
-                'email'=>$email['email']
-            ]);
+            if(empty($email['id'])){
+                Email::create([
+                    'contact_id'=>$contact->id,
+                    'email'=>$email['email']
+                ]);
+            }else{
+                Email::find($email['id]'])->update([
+                    'email'=>$email['email']
+                ]);
+            }
         }
 
         foreach($data['phones'] as $phone){
-            Phone::updateOrCreate([
-                'id'=>$phone['id'],
-                'contact_id'=>$contact->id
-            ],[
-                'phone'=>$phone['phone']
-            ]);
+            if(empty($phone['id'])){
+                Phone::create([
+                    'contact_id'=>$contact->id,
+                    'phone'=>$phone['phone']
+                ]);
+            }else{
+                Phone::find($phone['id'])->update([
+                    'phone'=>$phone['phone']
+                ]);
+            }
         }
 
         return response()->json(null,200);
